@@ -1,0 +1,30 @@
+{% load static %}
+<div class="container">
+    <h1> {{exContext.team_name}} </h1>
+    
+    <form method="POST" action="" enctype="multipart/form-data">
+
+        <br>
+        {% csrf_token %}
+        팀명
+        {{postuploadForm.team_name}}
+        팀원
+        {{postuploadForm.team_members}}
+        한줄소개
+        {{postuploadForm.intro_text}}
+        <br>
+        이미지1
+        {{postuploadForm.image1}}
+        <br>
+        이미지2
+        {{postuploadForm.image2}}
+        <br>
+        이미지3
+        {{postuploadForm.image3}}
+        <br>
+        이미지4
+        {{postuploadForm.image4}}
+        <input type="submit" class="btn btn-primary col-12" value="제출">
+    </form>
+
+</div>

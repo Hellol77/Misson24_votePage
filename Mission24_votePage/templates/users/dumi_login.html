@@ -1,0 +1,39 @@
+{% if user.is_active %}
+<h1>{{user.university}}</h1>
+<h1>역할 : {{user.role}}</h1>
+ <h1>{{user.user_id}} 님 반갑습니다.</h1>
+
+ <button type="button" onClick="location.href='/main'">이동하기 </button>
+ <button type="button" onClick="location.href='/logout'">로그아웃 </button>
+{% else %}
+<form method="POST" action="." novalidate>
+    {% csrf_token %}
+    <div>
+        <label name="label_user_id" for="{{ form.user_id.id_for_label }}">
+            {{ form.user_id.label }}
+        </label>
+        {{ form.user_id }}
+        <label name="label_user_id" for="{{ form.user_id.id_for_label }}">
+            {{ form.password.label }}
+        </label>
+        {{ form.password }}
+
+        <input type="submit" value="작성">
+        <script type="text/javascript">
+            if (document.getElementsByName('user_id')[0].value != '') {
+                document.getElementsByName('label_user_id')[0].setAttribute('class', 'active');
+            }
+        </script>
+        {% if form.user_id.errors %}
+        <script type="text/javascript">
+            document.getElementsByName('user_id')[0].setAttribute('class', 'form-control is-invalid')
+        </script>
+        {% for error in form.user_id.errors %}
+        <div class="invalid-feedback">
+            {{ error }}
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</form>
+{% endif %}
