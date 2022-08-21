@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mission24</title>
+    <link
+      rel="stylesheet"
+      href="/static/users/css/register.css"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="./login.html" class="nav__home">MISSON24</a>
+      <div class="nav__sub">
+        <a class="nav__sub__about">ABOUT</a>
+        <a class="nav__sub__login">LOGIN</a>
+      </div>
+    </nav>
+    <section class="main">
+      <form class="form" action="">
+        <div class="register-img">
+          <img src="/static/users/img/registerTitle.png" alt="register" />
+        </div>
+        <label for="">팀명</label>
+        <input class="text-input" type="text" required />
+        <label for="">팀원</label>
+        <input class="text-input" type="text" required />
+        <label for="">한줄 소개</label>
+        <textarea class="large-text-input" type="text"></textarea>
+
+        <div class="main-file-input-box">
+          <div class="img-title">
+            이미지 업로드(이미지는 네 장까지 업로드 가능합니다.)
+          </div>
+          <div class="file-input-box">
+            <div class="filebox">
+              <label for="file1">
+                <img
+                  class="file-label-img"
+                  src="/static/users/img/Link.png"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input class="file-input" type="file" id="file1" required />
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-1"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+            </div>
+            <div class="filebox">
+              <label for="file2">
+                <img
+                  class="file-label-img"
+                  src="/static/users/img/Link.png"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input class="file-input" type="file" id="file2" />
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-2"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+            </div>
+            <div class="filebox">
+              <label for="file3">
+                <img
+                  class="file-label-img"
+                  src="/static/users/img/Link.png"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input class="file-input" type="file" id="file3" />
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-3"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+            </div>
+            <div class="filebox">
+              <label for="file4">
+                <img
+                  class="file-label-img"
+                  src="/static/users/img/Link.png"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input class="file-input" type="file" id="file4" />
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-4"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+        <div class="submit-button-box">
+          <button class="submit-button" type="submit">등록하기</button>
+        </div>
+      </form>
+    </section>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $("#file1").on("change", function () {
+      var fileName = $("#file1")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-1").val(fileName);
+    });
+    $("#file2").on("change", function () {
+      var fileName = $("#file2")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-2").val(fileName);
+    });
+    $("#file3").on("change", function () {
+      var fileName = $("#file3")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-3").val(fileName);
+    });
+    $("#file4").on("change", function () {
+      var fileName = $("#file4")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-4").val(fileName);
+    });
+  </script>
+</html>
