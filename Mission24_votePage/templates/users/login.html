@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/users/css/main.css" type="text/css" />
     <title>Mission24</title>
+    <link rel="stylesheet" href="/static/users/css/login.css" type="text/css" />
   </head>
   <body>
     <nav class="nav">
@@ -24,22 +24,27 @@
         />
       </div>
       <div class="subTitle-img">
+        \
         <img
           class="subTitleImg"
           src="/static/users/img/subTitle.png"
           alt="평가 페이지"
         />
       </div>
+      <form class="formDiv" action="">
+        <div class="id-Div">
+          <label class="id-label" for="">이름</label>
+          <input class="idInput" type="text" />
+        </div>
+        <div class="password-Div">
+          <label class="password-label" for=""
+            >비밀번호 (휴대푠 뒷 자리 4자리)</label
+          >
+          <input class="passwordInput" type="password" />
+        </div>
 
-      <div class="button-Div">
-        <a class="button-a" href="./register.html">
-          <div class="button-Div__button">HACKATON 결과물 등록하기</div>
-        </a>
-
-        <a class="button-a" href="">
-          <div class="button-Div__button">PEER GROUP 평가하기</div>
-        </a>
-      </div>
+        <button class="submitButton" type="submit">로그인</button>
+      </form>
       <div><img src="/static/users/img/footerImg.png" alt="location" /></div>
     </section>
   </body>
