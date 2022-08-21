@@ -1,0 +1,109 @@
+@import url("reset.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+body {
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+.nav {
+  display: flex;
+  background-color: rgb(199, 181, 148);
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  width: 100vw;
+  font-size: 20px;
+}
+.nav__home {
+  margin-left: 2rem;
+  margin-right: 3rem;
+}
+.nav__sub {
+  display: flex;
+  margin-right: 2rem;
+}
+.nav__sub__about {
+  margin-right: 3rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+section {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
+}
+.title-img {
+  margin-bottom: 1rem;
+}
+form {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.id-Div {
+  display: flex;
+  flex-direction: column;
+}
+.password-Div {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  color: rgb(113, 128, 150);
+  font-size: 22px;
+  margin-bottom: 1.5rem;
+}
+input {
+  border: 1px solid rgb(113, 128, 150);
+  border-radius: 6px;
+  background-color: black;
+  color: rgb(113, 128, 150);
+  font-size: large;
+  width: 480px;
+  max-width: 500px;
+  height: 40px;
+  padding-left: 20px;
+  margin-bottom: 1.5rem;
+}
+input:focus {
+  outline: none;
+}
+.submitButton {
+  width: 380px;
+  height: 50px;
+  color: white;
+  background-color: rgb(199, 181, 148);
+  border-radius: 50px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  border: none;
+}
+
+@media screen and (max-width: 767px) {
+  .titleImg {
+    width: 350px;
+  }
+  .subTitleImg {
+    width: 250px;
+  }
+  .formDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+  .passwordInput {
+    width: 300px;
+  }
+  .idInput {
+    width: 300px;
+  }
+}
