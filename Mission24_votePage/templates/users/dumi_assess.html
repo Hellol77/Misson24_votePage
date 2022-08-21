@@ -1,0 +1,4 @@
+{% for list in listall %}
+    {{forloop.counter}} / {{num}}
+    <a href="./{{list.pk}}">{{list.team_name}}</a>
+{% endfor %}
