@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, PostResult
+from .models import User, PostResult, PersonalVote
 from django.contrib.auth.models import Group
 
 class UserAdmin(admin.ModelAdmin):
@@ -28,6 +28,15 @@ class PostResultAdmin(admin.ModelAdmin):
         'image4',
         'imagesrc4',
         )
-    search_fields = ('nickname','team_name')
+    search_fields = ('user_id','team_name')
 
 admin.site.register(PostResult, PostResultAdmin)
+
+class PersonalVoteAdmin(admin.ModelAdmin):
+    list_display = (
+        'user_id',
+        'dict_json'
+        )
+    search_fields = ('user_id','team_name')\
+
+admin.site.register(PersonalVote, PersonalVoteAdmin)

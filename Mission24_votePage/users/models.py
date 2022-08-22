@@ -2,13 +2,14 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from .choice import *
+from django.db.models import JSONField
 
 class UserManager(BaseUserManager):
-    def create_user(self, user_id, password, university, role):
+    def create_user(self, user_id, password, university, role, vote):
         user = self.model(
             user_id = user_id,
             university = university,
-            role = role
+            role = role,
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -64,3 +65,16 @@ class PostResult(models.Model):
         db_table = 'PostResult'
         verbose_name = 'PostResult'
         verbose_name_plural = 'PostResult'
+
+
+class PersonalVote(models.Model):
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, verbose_name='아이디')
+    dict_json = JSONField(blank=True, null=True, verbose_name='투표 딕셔너리')
+
+    def __str__(self):              
+        return str(self.user_id)
+
+    class Meta:
+        db_table = 'PersonalVote'
+        verbose_name = 'PersonalVote'
+        verbose_name_plural = 'PersonalVote'

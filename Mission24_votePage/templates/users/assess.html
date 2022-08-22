@@ -18,7 +18,7 @@
     </nav>
 
     <div class="upword">
-        PEER GROUP 평가하기    
+      <a href="/assess">PEER GROUP 평가하기</a>   
     </div>
     <div class="middleword">
         투표는 최대 5팀까지 가능합니다. <br>
@@ -30,7 +30,11 @@
         <div class="button-Div">
         {% for list in listall %}
             <a class="button-a">
-                <div class="button-Div__button" onclick="location.href='./{{list.pk}}';">
+                {% if list.value == 1%}
+                <div class="button-Div__button clicked" onclick="location.href='./{{list.pk}}';">
+                {% else%}
+                <div class="button-Div__button" onclick="location.href='./{{list.pk}}';">  
+                {% endif %}
                     <a class="forloopCount">{{forloop.counter}} / {{num}}</a>
                     <a class="teamName">{{list.team_name}}</a>
 
@@ -46,5 +50,9 @@
         </div>
 
     </section>
+    {% for message in messages %}
+    {{ message.tag }}
+    {{ message }}
+    {% endfor %}
   </body>
 </html>

@@ -44,10 +44,14 @@ section {
 }
 
 .upword {
-  color: rgb(255, 255, 255);
   font-size: 35px;
   margin-top: 2rem;
   margin-left: 4rem;
+}
+
+.upword a{
+  color: rgb(255, 255, 255);
+  font-weight: 500;
 }
 
 .middleword {
@@ -93,9 +97,14 @@ section {
   font-weight: 600;
   font-size: 22px;
   text-align: center;
+  cursor: pointer;
 }
 .button-a {
   margin-bottom: 2rem;
+}
+
+.clicked {
+  border: 3px outset red;
 }
 
 .arrow_box {
