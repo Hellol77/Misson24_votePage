@@ -1,0 +1,148 @@
+@import url("reset.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+body {
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+.nav {
+  display: flex;
+  background-color: rgb(199, 181, 148);
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  width: 100vw;
+  font-size: 20px;
+}
+.nav__home {
+  margin-left: 2rem;
+  margin-right: 3rem;
+}
+.nav__sub {
+  display: flex;
+  margin-right: 2rem;
+}
+.nav__sub__about {
+  margin-right: 3rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+
+section {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.title-img {
+  margin-bottom: 1rem;
+}
+
+.upword {
+  color: rgb(255, 255, 255);
+  font-size: 35px;
+  margin-top: 2rem;
+  margin-left: 4rem;
+}
+
+.middleword {
+  color: rgb(113, 128, 150, 0.8);
+  font-size: 22px;
+  font-weight: 300;
+  margin-top: 2rem;
+  margin-left: 6.5rem;
+  line-height: 2;
+}
+
+.forloopCount{
+  margin-left: 4rem;
+}
+
+.teamName{
+  margin-left: 5.5rem;
+}
+
+.iconHuman{
+  position:absolute;
+  left: 82.5rem;
+  width: 3rem;
+}
+
+.button-Div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2.4rem;
+  text-align: center;
+}
+.button-Div__button {
+  display: flex;
+  align-items: center;
+  width: 1300px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: rgb(217, 217, 217);
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-size: 22px;
+  text-align: center;
+}
+.button-a {
+  margin-bottom: 2rem;
+}
+
+.arrow_box {
+  display: none;
+  position: absolute;
+  width: 100px;
+  padding: 8px;
+  left: 80.5rem;
+  margin-top: 8.5rem;
+  line-height: 1.2;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  background: #333;
+  color:aliceblue;
+  font-size: 1rem;
+}
+
+.arrow_box:after {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border: solid transparent;
+  border-color: rgba(51, 51, 51, 0);
+  border-bottom-color: #333;
+  border-width: 10px;
+  pointer-events: none;
+  content: ' ';
+}
+
+img:hover + p.arrow_box {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .titleImg {
+    width: 350px;
+  }
+  .subTitleImg {
+    width: 250px;
+  }
+  .button-Div__button {
+    width: 400px;
+    height: 80px;
+ 
+  }
+}

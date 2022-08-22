@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.views.generic import FormView
 
 class LoginView(FormView):
-    template_name = 'users/dumi_login.html'
+    template_name = 'users/Django_login.html'
     form_class = LoginForm
     success_url = '/'
 
@@ -21,7 +21,7 @@ class LoginView(FormView):
         return super().form_valid(form)
 
 def main_view(request):
-    return render(request, 'users/dumi_main.html')
+    return render(request, 'users/Django_main.html')
 
 def logout_view(request):
     logout(request)
@@ -75,7 +75,7 @@ def peerGroup_view(request):
         'listall': listall,
         'num': len(listall)
     }
-    return render(request, 'users/dumi_assess.html', context)
+    return render(request, 'users/assess.html', context)
 
 def assessDetail_view(request, pk):
     assess = get_object_or_404(PostResult, pk=pk)

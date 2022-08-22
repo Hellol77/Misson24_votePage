@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'users/css/assess.css' %}" type="text/css" />
+    <title>Mission24</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/" class="nav__home">MISSON24</a>
+      <div class="nav__sub">
+        <a href="" class="nav__sub__about">ABOUT</a>
+        <a href="/logout" class="nav__sub__login">LOGOUT</a>
+      </div>
+    </nav>
+
+    <div class="upword">
+        PEER GROUP 평가하기    
+    </div>
+    <div class="middleword">
+        투표는 최대 5팀까지 가능합니다. <br>
+        내가 투표한 팀은 빨간색 외곽선 효과가 나타납니다. <br>
+        클릭시 상세 페이지로 이동합니다.
+    </div>
+
+    <section>
+        <div class="button-Div">
+        {% for list in listall %}
+            <a class="button-a">
+                <div class="button-Div__button" onclick="location.href='./{{list.pk}}';">
+                    <a class="forloopCount">{{forloop.counter}} / {{num}}</a>
+                    <a class="teamName">{{list.team_name}}</a>
+
+                        <img
+                        class="iconHuman"
+                        src="{% static 'users/img/iconHuman.png' %}"
+                        alt="사람 아이콘"
+                        />
+                    <p class="arrow_box">{{list.team_members}}</p>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+
+    </section>
+  </body>
+</html>
