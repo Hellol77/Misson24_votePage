@@ -47,7 +47,7 @@ class PostResult(models.Model):
     user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, verbose_name='아이디')
     team_name = models.CharField(max_length=17, verbose_name="팀명", blank=True, null=True)
     team_members = models.CharField(max_length=30, verbose_name="팀원", blank=True, null=True)
-    intro_text = models.CharField(max_length=100, verbose_name="한줄소개", blank=True, null=True)
+    intro_text = models.CharField(max_length=300, verbose_name="한줄소개", blank=True, null=True)
 
     image1 = models.ImageField(upload_to='images/',verbose_name='이미지1', blank=True, null=True)
     imagesrc1 = models.CharField(max_length=40, verbose_name='이미지1 주소', blank=True, null=True)

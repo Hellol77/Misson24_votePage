@@ -64,17 +64,19 @@ section {
 }
 
 .forloopCount{
+  width: 50px;
   margin-left: 4rem;
 }
 
 .teamName{
+  width: 1020px;
+  text-align: left;
   margin-left: 5.5rem;
 }
 
 .iconHuman{
-  position:absolute;
-  left: 82.5rem;
   width: 3rem;
+
 }
 
 .button-Div {
@@ -107,40 +109,23 @@ section {
   border: 3px outset red;
 }
 
+/* 말풍선 적절한 top 과 margin-left 로 위치조정 */
 .arrow_box {
   display: none;
-  position: absolute;
-  width: 100px;
-  padding: 8px;
-  left: 80.5rem;
-  margin-top: 8.5rem;
-  line-height: 1.2;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  background: #333;
-  color:aliceblue;
-  font-size: 1rem;
-}
-
-.arrow_box:after {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  margin-left: -10px;
-  border: solid transparent;
-  border-color: rgba(51, 51, 51, 0);
-  border-bottom-color: #333;
-  border-width: 10px;
-  pointer-events: none;
-  content: ' ';
+  width: 400px;
+  text-align: right;
+  margin-left: -480px;
+  color: #333;
 }
 
 img:hover + p.arrow_box {
   display: block;
 }
+
+
+
+
+
 
 @media screen and (max-width: 767px) {
   .titleImg {
@@ -152,6 +137,48 @@ img:hover + p.arrow_box {
   .button-Div__button {
     width: 400px;
     height: 80px;
- 
+    font-size: 18px;
+  }
+  .middleword {
+    font-size: 17px;
+    margin-left: 5rem;
+  }
+  .teamName {
+    width: 110px;
+    margin-right: 30px;
+  }
+  .forloopCount{
+    width: 40px
+  }
+  .arrow_box {
+    display: none;
+    position: absolute;
+    margin-left: 341px;
+    margin-top: 100px;
+    text-align: center;
+    width: 100px;
+    padding: 8px;
+    left: 0;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    background: #333;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  .arrow_box:after {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -10px;
+    border: solid transparent;
+    border-color: rgba(51, 51, 51, 0);
+    border-bottom-color: #333;
+    border-width: 10px;
+    pointer-events: none;
+    content: ' ';
   }
 }

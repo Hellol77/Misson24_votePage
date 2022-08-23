@@ -54,6 +54,26 @@ class PostForm(forms.ModelForm):
         widget=forms.TextInput(
         attrs={'class': 'form-control',}), 
         error_messages={'required': '한줄소개를 입력해주세요.'},
+        max_length=300,
+        label='한줄소개'
+    )
+    class Meta:
+        model = PostResult
+        fields = ['team_name', 'team_members', 'intro_text', 'image1', 'image2','image3','image4']
+
+class HostForm(forms.Form):
+    team_name = forms.CharField(
+        error_messages={'required': '팀명을 입력해주세요.'},
+        max_length=17,
+        label='팀명'
+    )
+    team_members = forms.CharField(
+        error_messages={'required': '팀원을 입력해주세요.'},
+        max_length=40,
+        label='팀원'
+    )
+    intro_text = forms.CharField(
+        error_messages={'required': '한줄소개를 입력해주세요.'},
         max_length=100,
         label='한줄소개'
     )

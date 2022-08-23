@@ -18,7 +18,7 @@
     </nav>
 
     <div class="upword">
-        <a href="/assess">PEER GROUP 평가하기</a>
+        <a href="/assess">PEER GROUP 평가하기 {{userVoteDict}}</a>
     </div>
     <section>
     <div class="container">
@@ -37,7 +37,7 @@
             {{assess.team_name}}
         </a>
         <div style="width: 600px; height: 430px; margin: 0 auto;">
-        <div class="slider" style=" height: 430px;">
+        <div class="slider" style=" height: 430px; margin: 0 auto">
           <input type="radio" name="slide" id="slide1" checked>
           <input type="radio" name="slide" id="slide2">
           <input type="radio" name="slide" id="slide3">
@@ -45,7 +45,7 @@
           <input type="radio" name="slide" id="slide5">
           <ul id="imgholder" class="imgs">
               <li>{{assess.intro_text}}</li>
-              <li><img src="../../media/{{assess.image1}}" style="height: 380px"></li>
+              <li><img src="../../media/{{assess.image1}}" style="height:380px;"></li>
               <li><img src="../../media/{{assess.image2}}" style="height: 380px"></li>
               <li><img src="../../media/{{assess.image3}}" style="height: 380px"></li>
               <li><img src="../../media/{{assess.image4}}" style="height: 380px"></li>
@@ -69,15 +69,25 @@
       </div>
       <form method="POST" action=".">
         {% csrf_token %}
+        {% if value == 0 %}
         <button class="submitButton" type="submit">
-          {% if value == 0 %}
           투표하기
-          {% else %}
+        {% else %}
+        <button class="cancelButton" type="submit">
           투표취소
-          {% endif %}
+        {% endif %}
         </button>
       </form>
     </div>
     </section>
+    <script>
+      window.addEventListener( "pageshow", function ( event ) {
+        var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+        if ( historyTraversal ) {
+          // Handle page restore.
+          window.location.href = '/assess';
+        }
+      });
+    </script>
   </body>
 </html>

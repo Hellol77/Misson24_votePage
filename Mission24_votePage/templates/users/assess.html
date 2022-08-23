@@ -18,7 +18,7 @@
     </nav>
 
     <div class="upword">
-      <a href="/assess">PEER GROUP 평가하기</a>   
+      <a href="/assess">PEER GROUP 평가하기</a> 
     </div>
     <div class="middleword">
         투표는 최대 5팀까지 가능합니다. <br>
@@ -34,15 +34,17 @@
                 <div class="button-Div__button clicked" onclick="location.href='./{{list.pk}}';">
                 {% else%}
                 <div class="button-Div__button" onclick="location.href='./{{list.pk}}';">  
-                {% endif %}
+                {% endif %}  
                     <a class="forloopCount">{{forloop.counter}} / {{num}}</a>
-                    <a class="teamName">{{list.team_name}}</a>
+                    <a class="teamName">{{list.team_name}}
 
-                        <img
-                        class="iconHuman"
-                        src="{% static 'users/img/iconHuman.png' %}"
-                        alt="사람 아이콘"
-                        />
+                      
+                    </a>
+                    <img
+                      class="iconHuman"
+                      src="{% static 'users/img/iconHuman.png' %}"
+                      alt="사람 아이콘"
+                    />
                     <p class="arrow_box">{{list.team_members}}</p>
                 </div>
             </a>
@@ -51,8 +53,18 @@
 
     </section>
     {% for message in messages %}
-    {{ message.tag }}
-    {{ message }}
+    <script type="text/javascript">
+      alert('최대 5개까지 투표 가능합니다.');
+    </script>
     {% endfor %}
+    <script>
+      window.addEventListener( "pageshow", function ( event ) {
+        var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+        if ( historyTraversal ) {
+          // Handle page restore.
+          window.location.reload();
+        }
+      });
+    </script>
   </body>
 </html>

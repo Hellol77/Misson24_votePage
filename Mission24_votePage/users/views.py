@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.views.generic import FormView
 from django.contrib import messages
 import json
+from users.decorators import *
 
 class LoginView(FormView):
     template_name = 'users/Django_login.html'
@@ -22,6 +23,7 @@ class LoginView(FormView):
 
         return super().form_valid(form)
 
+@login_message_required
 def main_view(request):
     return render(request, 'users/Django_main.html')
 
@@ -29,11 +31,9 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+@login_message_required
 def PostUpload(request):
     if request.method == 'POST':
-        if PostResult.objects.filter(user_id=request.user).exists():
-            PostResult.objects.filter(user_id=request.user)[0].delete()
-
         team_name = request.POST['team_name']
         team_members = request.POST['team_members']
         intro_text = request.POST['intro_text']
@@ -46,44 +46,65 @@ def PostUpload(request):
             for i in range(len(request.FILES)):
                 image_dict_values[i] = request.FILES[image_dict_keys[i]]
 
-        postupload = PostResult(
-            user_id = request.user,
-            team_name=team_name,
-            team_members=team_members,
-            intro_text=intro_text,
-            image1=image_dict_values[0],
-            image2=image_dict_values[1],
-            image3=image_dict_values[2],
-            image4=image_dict_values[3],
-        )
-        postupload.save()
-        return redirect('/main')
+        if PostResult.objects.filter(user_id=request.user).exists():
+            modifyPost = PostResult.objects.get(id=get_object_or_404(PostResult, user_id=request.user).id)
+            modifyPost.user_id = request.user
+            modifyPost.team_name = team_name
+            modifyPost.team_members = team_members
+            modifyPost.intro_text = intro_text
+            modifyPost.image1 = image_dict_values[0]
+            modifyPost.image2 = image_dict_values[1]
+            modifyPost.image3 = image_dict_values[2]
+            modifyPost.image4 = image_dict_values[3]
+            modifyPost.save()
+            return redirect('/main')
+        else:
+            postupload = PostResult(
+                user_id = request.user,
+                team_name=team_name,
+                team_members=team_members,
+                intro_text=intro_text,
+                image1=image_dict_values[0],
+                image2=image_dict_values[1],
+                image3=image_dict_values[2],
+                image4=image_dict_values[3],
+            )
+            postupload.save()
+            return redirect('/main')
     else:
         if PostResult.objects.filter(user_id=request.user).exists():
             exContext = PostResult.objects.filter(user_id=request.user)[0]
-            postuploadForm = PostForm(initial={"team_name":exContext.team_name, "team_members":exContext.team_members, "intro_text":exContext.intro_text})
+#            postuploadForm = PostForm(initial={"team_name":exContext.team_name, "team_members":exContext.team_members, "intro_text":exContext.intro_text})
+
+            context = {
+                "team_name":exContext.team_name,
+                "team_members":exContext.team_members,
+                "intro_text":exContext.intro_text,
+                "num": 1
+            #'postuploadForm': postuploadForm,
+            }
         else:
-            postuploadForm = PostForm
+            context = {
+                "num": 0
+            }
 
-        context = {
-            'postuploadForm': postuploadForm,
-        }
 
-        return render(request, 'users/dumi_register2.html', context)
+        return render(request, 'users/register.html', context)
 
+@login_message_required
 def peerGroup_view(request):
     listall = PostResult.objects.all()
     if PersonalVote.objects.filter(user_id=request.user).exists():
         PersonalVoteDict = json.loads(PersonalVote.objects.filter(user_id=request.user)[0].dict_json)
-        value = list(PersonalVoteDict.values())
 
+        for i in range(len(listall)):
+            id = listall[i].id
+            if str(id) in PersonalVoteDict:
+                listall[i].value = PersonalVoteDict[str(id)]
+            else:
+                listall[i].value = 0
     else:
-        value = [0 for _ in range(len(listall))]
-
-    for i in range(len(listall)):
-        if i < len(value):
-            listall[i].value = value[i]
-        else:
+        for i in range(len(listall)):
             listall[i].value = 0
 
     context = {
@@ -92,6 +113,7 @@ def peerGroup_view(request):
     }
     return render(request, 'users/assess.html', context)
 
+@login_message_required
 def assessDetail_view(request, pk):
     listall = PostResult.objects.all()
     assess = get_object_or_404(PostResult, pk=pk)
@@ -104,37 +126,49 @@ def assessDetail_view(request, pk):
     id_list = []
     for i in range(len(listall)):
         id_list.append(listall[i].id)
-        if listall[i].team_name not in PersonalVoteDict:
-            PersonalVoteDict[listall[i].team_name] = 0
+        if str(listall[i].id) not in PersonalVoteDict:
+            PersonalVoteDict[str(listall[i].id)] = 0
     
     if request.method == 'POST':
-        if PersonalVoteDict[assess.team_name] == 1:
-            PersonalVote.objects.filter(user_id=request.user)[0].delete()
-            PersonalVoteDict[assess.team_name] = 0
+        for i in list(PersonalVoteDict.keys()):
+            if int(i) not in id_list:
+                del PersonalVoteDict[i]
 
-            voteupload = PersonalVote(
-                user_id = request.user,
-                dict_json = json.dumps(PersonalVoteDict)
-            )
-            voteupload.save()
+        if PersonalVoteDict[str(assess.id)] == 1:
+#            PersonalVote.objects.filter(user_id=request.user)[0].delete()
+            modifyVote = PersonalVote.objects.get(id=get_object_or_404(PersonalVote, user_id=request.user).id)
+            PersonalVoteDict[str(assess.id)] = 0
+            modifyVote.user_id = request.user
+            modifyVote.dict_json = json.dumps(PersonalVoteDict)
+            modifyVote.save()
+#            voteupload = PersonalVote(
+#                user_id = request.user,
+#                dict_json = json.dumps(PersonalVoteDict)
+#            )
+#            voteupload.save()
             return redirect('.')
 
-        if sum(list(PersonalVoteDict.values())) == 5:
-            messages.add_message(request, messages.INFO, 'Hello world.')
-            return redirect('/assess')
         else:
-            if PersonalVote.objects.filter(user_id=request.user).exists():
-                PersonalVote.objects.filter(user_id=request.user)[0].delete()
+            if sum(list(PersonalVoteDict.values())) == 5:
+                messages.warning(request, '최대 5개까지 투표 가능합니다.')
+                return redirect('/assess')
+            else:
+                PersonalVoteDict[str(assess.id)] = 1
+                if PersonalVote.objects.filter(user_id=request.user).exists():
+#                   PersonalVote.objects.filter(user_id=request.user)[0].delete()
+                    modifyVote = PersonalVote.objects.get(id=get_object_or_404(PersonalVote, user_id=request.user).id)
+                    modifyVote.user_id = request.user
+                    modifyVote.dict_json = json.dumps(PersonalVoteDict)
+                    modifyVote.save()
+                    return redirect('.')
+                else:
+                    voteupload = PersonalVote(
+                        user_id = request.user,
+                        dict_json = json.dumps(PersonalVoteDict)
+                    )
+                    voteupload.save()
 
-            PersonalVoteDict[assess.team_name] = 1
-
-            voteupload = PersonalVote(
-                user_id = request.user,
-                dict_json = json.dumps(PersonalVoteDict)
-            )
-            voteupload.save()
-
-            return redirect('.')
+                return redirect('.')
 
     else:
         if id_list.index(assess.id) == 0:
@@ -155,7 +189,7 @@ def assessDetail_view(request, pk):
         context = {
             'assess': assess,
             'userVoteDict': PersonalVoteDict,
-            'value': PersonalVoteDict[assess.team_name],
+            'value': PersonalVoteDict[str(assess.id)],
             'num': len(listall),
             'prevID':prevID,
             'nextID':nextID,

@@ -102,6 +102,16 @@ section {
   border: none;
 }
 
+.cancelButton {
+  width: 200px;
+  height: 50px;
+  color: white;
+  background-color: #CF3E3E;
+  border-radius: 50px;
+  margin-top: 2rem;
+  border: none;
+}
+
 @media screen and (max-width: 767px) {
   .titleImg {
     width: 350px;

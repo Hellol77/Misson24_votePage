@@ -71,18 +71,36 @@
         {% csrf_token %}
         <div class="id-Div">
           <label class="id-label" for="">이름</label>
-          {{ form.user_id }}
+          <input
+            type="text"
+            class="form-control idInput"
+            id="id_user_id"
+            name="user_id"
+            maxlength='17'
+          />
+ 
         </div>
         <div class="password-Div">
           <label class="password-label" for=""
             >비밀번호 (휴대푠 뒷 자리 4자리)</label
           >
-          {{ form.password }}
+          <input
+            type="text"
+            class="form-control passwordInput"
+            id="id_password"
+            name="password"
+            maxlength='17'
+          />
         </div>
         <button class="submitButton" type="submit">로그인</button>
       </form>
       {% endif %}
       <div><img src="{% static 'users/img/footerImg.png' %}" alt="location" /></div>
     </section>
+    {% for message in messages %}
+    <script type="text/javascript">
+      alert('로그인한 사용자만 이용할 수 있습니다.');
+    </script>
+    {% endfor %}
   </body>
 </html>
