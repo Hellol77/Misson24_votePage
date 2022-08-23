@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="/Mission24_votePage/static/users/css/Django_assess_detail.css"
+      type="text/css"
+    />
+    <title>Mission24</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/" class="nav__home">MISSON24</a>
+      <div class="nav__sub">
+        <a href="" class="nav__sub__about">ABOUT</a>
+        <a href="/logout" class="nav__sub__login">LOGOUT</a>
+      </div>
+    </nav>
+    <section>
+      <div class="title-box">
+        <div>PEER GROUP 평가하기</div>
+        <div>2/24</div>
+      </div>
+      <div class="main-box">
+        <div class="main-box__title-box">
+          <div><button class="move-button">Prev</button></div>
+          <div class="main-box__title">팀명</div>
+          <div><button class="move-button">Next</button></div>
+        </div>
+        <div class="main-box__content-box">
+          <div class="content-intro-box">
+            <div class="content-intro__title">소개</div>
+            <div class="content-intro__content">
+              안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요
+            </div>
+          </div>
+          <div class="content-photo-box">
+            <img
+              class="content-photo"
+              id="content-photo-1"
+              src="/Mission24_votePage/media/images/스크린샷_2022-08-04_오전_11.09.50.png"
+              alt="img"
+            />
+            <img
+              class="content-photo"
+              id="content-photo-2"
+              src="/Mission24_votePage/media/images/스크린샷_2022-08-02_오후_4.55.58.png"
+              alt="img"
+            />
+            <img
+              class="content-photo"
+              id="content-photo-3"
+              src="/Mission24_votePage/media/images/스크린샷_2022-08-02_오후_7.51.17.png"
+              alt="img"
+            />
+            <img
+              class="content-photo"
+              id="content-photo-4"
+              src="/Mission24_votePage/media/images/스크린샷_2022-08-04_오전_11.09.50.png"
+              alt="img"
+            />
+            <div class="checks">
+              <input
+                type="radio"
+                name="photo"
+                class="radio-button"
+                id="1"
+                checked
+              />
+              <label for=""></label>
+              <input type="radio" name="photo" class="radio-button" id="2" />
+              <label for=""></label>
+              <input type="radio" name="photo" class="radio-button" id="3" />
+              <label for=""></label>
+              <input type="radio" name="photo" class="radio-button" id="4" />
+              <label for=""></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="submit-button" type="submit">투표하기</button>
+    </section>
+  </body>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $("#1").click(function () {
+      $("#content-photo-1").css("display", "block");
+      $("#content-photo-2").css("display", "none");
+      $("#content-photo-3").css("display", "none");
+      $("#content-photo-4").css("display", "none");
+    });
+    $("#2").click(function () {
+      $("#content-photo-1").css("display", "none");
+      $("#content-photo-2").css("display", "block");
+      $("#content-photo-3").css("display", "none");
+      $("#content-photo-4").css("display", "none");
+    });
+    $("#3").click(function () {
+      $("#content-photo-1").css("display", "none");
+      $("#content-photo-2").css("display", "none");
+      $("#content-photo-3").css("display", "block");
+      $("#content-photo-4").css("display", "none");
+    });
+    $("#4").click(function () {
+      $("#content-photo-1").css("display", "none");
+      $("#content-photo-2").css("display", "none");
+      $("#content-photo-3").css("display", "none");
+      $("#content-photo-4").css("display", "block");
+    });
+  </script>
+</html>
