@@ -178,3 +178,57 @@ input[type="radio"]:checked {
 #content-photo-4 {
   display: none;
 }
+
+@media screen and (max-width: 767px) {
+  .section-box {
+    height: 85vh;
+  }
+  .main-box__content-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+  }
+
+  .content-intro-box {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  .content-intro__title {
+    margin: 20px;
+    font-size: 15px;
+  }
+  .content-intro__content {
+    width: 80%;
+    font-size: 13px;
+    display: -webkit-box;
+    margin-bottom: 20px;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  .content-photo-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .content-photo {
+    height: 25vh;
+    width: 90%;
+  }
+  .submit-button {
+    width: 250px;
+    height: 30px;
+  }
+  .title-box {
+    font-size: 21px;
+  }
+  .main-box__title {
+    font-size: 20px;
+  }
+  .move-button {
+    font-size: 10px;
+  }
+}
