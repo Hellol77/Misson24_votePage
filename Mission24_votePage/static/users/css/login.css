@@ -88,12 +88,12 @@ input:focus {
 }
 
 .loginContent {
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   width: 700px;
   height: 358px;
-  margin-top:3.5rem
+  margin-top: 3.5rem;
 }
 
 .loginContent-img {
@@ -102,47 +102,47 @@ input:focus {
 }
 
 .UniversityCard {
-  float:left;
+  float: left;
   width: 152px;
   height: 228px;
-  background-size:cover;
+  background-size: cover;
 }
 
 .InformCard {
-  float:left;
-  margin-left:1rem;
+  float: left;
+  margin-left: 1rem;
   width: 458px;
   height: 228px;
   border: 1px solid #718096;
 }
 
-.textGradient{
+.textGradient {
   background: #ffffff;
   background: -webkit-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
-  background:    -moz-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
-  background:      -o-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
-  background:         linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
+  background: -moz-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
+  background: linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
   -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   color: transparent;
   font-weight: bold;
 }
 
-.textG1{
+.textG1 {
   margin-left: 3rem;
   margin-top: 4rem;
   font-size: 22px;
   font-weight: 600;
 }
 
-.textG2{
+.textG2 {
   margin-left: 3rem;
   margin-top: 1.3rem;
   font-size: 33px;
   font-weight: 600;
 }
 
-.textU1{
+.textU1 {
   text-align: center;
   margin-top: 3.2rem;
   font-size: 14px;
@@ -150,7 +150,7 @@ input:focus {
   color: white;
 }
 
-.textU2{
+.textU2 {
   text-align: center;
   margin-top: 0.5rem;
   font-size: 10px;
@@ -178,36 +178,49 @@ input:focus {
     width: 300px;
   }
   .InformCard {
-    float:left;
-    margin-left:1rem;
     width: 300px;
-    height: 228px;
-    border: 1px solid #718096;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    float: none;
+    height: auto;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    text-align: center;
   }
   .loginContent {
-    margin-left:20px;
-    display:flex;
-    flex-direction:column;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 500px;
-    height: 358px;
-    margin-top:3.5rem
+    width: 100vw;
+    height: auto;
+    margin-top: 3.5rem;
   }
   .loginContent-img {
-    width: 500px;
-    height: 228px;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .textG1{
-    margin-left: 2rem;
-    margin-top: 4rem;
+  .textG1 {
+    margin-left: 0rem;
+    margin-top: 1rem;
     font-size: 16px;
     font-weight: 600;
   }
-  
-  .textG2{
-    margin-left: 2rem;
+
+  .textG2 {
+    margin-left: 0rem;
     margin-top: 1.3rem;
     font-size: 26px;
     font-weight: 600;
+  }
+  .submitButton {
+    width: 300px;
   }
 }
