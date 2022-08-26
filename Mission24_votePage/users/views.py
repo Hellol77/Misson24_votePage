@@ -130,6 +130,9 @@ def assessDetail_view(request, pk):
             PersonalVoteDict[str(listall[i].id)] = 0
     
     if request.method == 'POST':
+        if str(request.user) == str(PostResult.objects.get(id=assess.id)):
+            return redirect('.')
+
         for i in list(PersonalVoteDict.keys()):
             if int(i) not in id_list:
                 del PersonalVoteDict[i]
@@ -191,9 +194,10 @@ def assessDetail_view(request, pk):
             'userVoteDict': PersonalVoteDict,
             'value': PersonalVoteDict[str(assess.id)],
             'num': len(listall),
+            'present':id_list.index(assess.id) + 1,
             'prevID':prevID,
             'nextID':nextID,
         }
 
-        return render(request, 'users/assess_detail.html', context)
+        return render(request, 'users/Django_assess_detail.html', context)
  

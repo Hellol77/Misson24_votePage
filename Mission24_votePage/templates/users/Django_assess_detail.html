@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+{% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="/Mission24_votePage/static/users/css/Django_assess_detail.css"
+      href="{% static 'users/css/Django_assess_detail.css' %}"
       type="text/css"
     />
     <title>Mission24</title>
@@ -15,51 +16,65 @@
     <nav class="nav">
       <a href="/" class="nav__home">MISSON24</a>
       <div class="nav__sub">
-        <a href="" class="nav__sub__about">ABOUT</a>
-        <a href="/logout" class="nav__sub__login">LOGOUT</a>
+        <a class="nav__sub__about">ABOUT</a>
+        {% if user.is_active %}
+        <a class="nav__sub__login" href="/logout">LOGOUT</a>
+        {% else %}
+        <a class="nav__sub__login" href="/">LOGIN</a>
+        {% endif %}
       </div>
     </nav>
     <section class="section-box">
       <div class="title-box">
-        <div>PEER GROUP 평가하기</div>
-        <div>2/24</div>
+        <div style=" cursor: pointer;" onclick="location.href='/assess';">PEER GROUP 평가하기</div>
+        <div>{{present}}/{{num}}</div>
       </div>
+
+
       <div class="main-box">
         <div class="main-box__title-box">
-          <div><button class="move-button">Prev</button></div>
+          {% if prevID != None  %}
+          <div><button class="move-button" onClick="location.href='/assess/{{prevID}}'">Prev</button></div>
+          {% else %}
+          <div><button class="move-button" style="visibility: hidden;">Prev</button></div>
+          {% endif %}
           <div class="main-box__title">팀명</div>
-          <div><button class="move-button">Next</button></div>
+          {% if nextID != None  %}
+          <div><button class="move-button" onClick="location.href='/assess/{{nextID}}'">Next</button></div>
+          {% else %}
+          <div><button class="move-button" style="visibility: hidden;">Next</button></div>
+          {% endif %}
         </div>
         <div class="main-box__content-box">
           <div class="content-intro-box">
             <div class="content-intro__title">소개</div>
             <div class="content-intro__content">
-              안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요안녕하세요
+              {{assess.intro_text}}
             </div>
           </div>
           <div class="content-photo-box">
             <img
               class="content-photo"
               id="content-photo-1"
-              src="/Mission24_votePage/media/images/스크린샷_2022-08-04_오전_11.09.50.png"
+              src="../../media/{{assess.image1}}"
               alt="img"
             />
             <img
               class="content-photo"
               id="content-photo-2"
-              src="/Mission24_votePage/media/images/스크린샷_2022-08-02_오후_4.55.58.png"
+              src="../../media/{{assess.image2}}"
               alt="img"
             />
             <img
               class="content-photo"
               id="content-photo-3"
-              src="/Mission24_votePage/media/images/스크린샷_2022-08-02_오후_7.51.17.png"
+              src="../../media/{{assess.image3}}"
               alt="img"
             />
             <img
               class="content-photo"
               id="content-photo-4"
-              src="/Mission24_votePage/media/images/스크린샷_2022-08-04_오전_11.09.50.png"
+              src="../../media/{{assess.image4}}"
               alt="img"
             />
             <div class="checks">
@@ -81,7 +96,14 @@
           </div>
         </div>
       </div>
-      <button class="submit-button" type="submit">투표하기</button>
+      <form method="POST" action=".">
+      {% csrf_token %}
+      {% if value == 0 %}
+        <button class="submit-button" type="submit">투표하기</button>
+      {% else %}
+        <button class="cancel-button" type="submit">취소하기</button>
+      {% endif %}
+      </form>
     </section>
   </body>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
