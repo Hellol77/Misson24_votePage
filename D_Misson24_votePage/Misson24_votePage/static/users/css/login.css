@@ -1,0 +1,227 @@
+@import url("reset.css");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+body {
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+.nav {
+  display: flex;
+  background-color: rgb(199, 181, 148);
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  width: 100vw;
+  font-size: 20px;
+}
+.nav__home {
+  margin-left: 2rem;
+  margin-right: 3rem;
+}
+.nav__sub {
+  display: flex;
+  margin-right: 2rem;
+}
+.nav__sub__about {
+  margin-right: 3rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+section {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 6rem;
+}
+.title-img {
+  margin-bottom: 1rem;
+}
+form {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.id-Div {
+  display: flex;
+  flex-direction: column;
+}
+.password-Div {
+  display: flex;
+  flex-direction: column;
+}
+label {
+  color: rgb(113, 128, 150);
+  font-size: 22px;
+  margin-bottom: 1.5rem;
+}
+input {
+  border: 1px solid rgb(113, 128, 150);
+  border-radius: 6px;
+  background-color: black;
+  color: rgb(113, 128, 150);
+  font-size: large;
+  width: 480px;
+  max-width: 500px;
+  height: 40px;
+  padding-left: 20px;
+  margin-bottom: 1.5rem;
+}
+input:focus {
+  outline: none;
+}
+.submitButton {
+  width: 380px;
+  height: 50px;
+  color: white;
+  background-color: rgb(199, 181, 148);
+  border-radius: 50px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.loginContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 700px;
+  height: 358px;
+  margin-top: 3.5rem;
+}
+
+.loginContent-img {
+  width: 700px;
+  height: 228px;
+}
+
+.UniversityCard {
+  float: left;
+  width: 152px;
+  height: 228px;
+  background-size: cover;
+}
+
+.InformCard {
+  float: left;
+  margin-left: 1rem;
+  width: 458px;
+  height: 228px;
+  border: 1px solid #718096;
+}
+
+.textGradient {
+  background: #ffffff;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
+  background: -moz-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
+  background: linear-gradient(rgba(255, 255, 255, 0.8), #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+.textG1 {
+  margin-left: 3rem;
+  margin-top: 4rem;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.textG2 {
+  margin-left: 3rem;
+  margin-top: 1.3rem;
+  font-size: 33px;
+  font-weight: 600;
+}
+
+.textU1 {
+  text-align: center;
+  margin-top: 3.2rem;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+.textU2 {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 10px;
+  font-weight: 500;
+  color: white;
+}
+
+@media screen and (max-width: 767px) {
+  .titleImg {
+    width: 350px;
+  }
+  .subTitleImg {
+    width: 250px;
+  }
+  .formDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+  .passwordInput {
+    width: 300px;
+  }
+  .idInput {
+    width: 300px;
+  }
+  .InformCard {
+    width: 300px;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    float: none;
+    height: auto;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    text-align: center;
+  }
+  .loginContent {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: auto;
+    margin-top: 3.5rem;
+  }
+  .loginContent-img {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .textG1 {
+    margin-left: 0rem;
+    margin-top: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .textG2 {
+    margin-left: 0rem;
+    margin-top: 1.3rem;
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .submitButton {
+    width: 300px;
+  }
+}

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mission24</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'users/css/register.css' %}"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/" class="nav__home">MISSON24</a>
+      <div class="nav__sub">
+        <a class="nav__sub__about" href="https://mission24.link/" target="_blank">ABOUT</a>
+        <a href="/logout" class="nav__sub__login">LOGOUT</a>
+      </div>
+    </nav>
+    <section class="main">
+      <form class="form" action="." method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="register-img">
+          <img class="imgPointer" src="{% static 'users/img/registerTitle.png' %}" onclick="javascript:location.href='.'" alt="register" />
+          <p class="alertWord"> 팀당 한 명(팀장)만 등록해주시기 바랍니다.</p>
+        </div>
+        <label class="labelClass" for="id_team_name">팀명</label>
+        <input
+          type="text"
+          class="form-control text-input"
+          id="id_team_name"
+          name="team_name"
+          value="{{team_name}}"
+          maxlength='17'
+        />
+        <label class="labelClass" for="id_team_members">팀원</label>
+        <input
+          type="text"
+          class="form-control text-input"
+          id="id_team_members"
+          name="team_members"
+          value="{{team_members}}"
+          maxlength='17'
+        />
+        <label class="labelClass" for="id_intro_text">소개 (300자 제한)</label>
+        <textarea
+          type="text"
+          class="form-control large-text-input"
+          id="id_intro_text"
+          name="intro_text"
+          maxlength='300'>{{intro_text}}</textarea>
+
+        <div class="main-file-input-box">
+          <div class="img-title">
+            이미지 업로드 (이미지는 네 장까지 업로드 가능합니다.)
+          </div>
+          <div class="file-input-box">
+            <div class="filebox">
+              <label for="id_image1">
+                <img
+                  class="file-label-img"
+                  src="{% static 'users/img/Link.png' %}"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input
+                type="file"
+                class="form-control file-input"
+                id="id_image1"
+                name="image1"
+              />
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-1"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+
+            </div>
+            <div class="filebox">
+              <label for="id_image2">
+                <img
+                  class="file-label-img"
+                  src="{% static 'users/img/Link.png' %}"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input 
+                type="file"
+                class="form-control file-input"
+                id="id_image2"
+                name="image2"/>
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-2"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+            </div>
+
+            <div class="filebox">
+              <label for="id_image3">
+                <img
+                  class="file-label-img"
+                  src="{% static 'users/img/Link.png' %}"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input 
+                type="file"
+                class="form-control file-input"
+                id="id_image3"
+                name="image3"
+              />
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-3"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+
+            </div>
+            <div class="filebox">
+              <label for="id_image4">
+                <img
+                  class="file-label-img"
+                  src="{% static 'users/img/Link.png' %}"
+                  alt="upload"
+                />
+                페이지 Preview 등록
+              </label>
+              <input
+                type="file"
+                class="form-control file-input"
+                id="id_image4"
+                name="image4"
+              />
+              <input
+                type="text"
+                class="upload-name"
+                id="upload-name-4"
+                placeholder="업로드한 이미지명"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+        <div class="submit-button-box">
+          <button class="submit-button" type="submit">
+            {% if num == 0 %}
+            등록하기
+            {% else %}
+            수정하기
+            {% endif %}
+          </button>
+        </div>
+      </form>
+    </section>
+  </body>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $("#id_image1").on("change", function () {
+      var fileName = $("#id_image1")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-1").val(fileName);
+    });
+    $("#id_image2").on("change", function () {
+      var fileName = $("#id_image2")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-2").val(fileName);
+    });
+    $("#id_image3").on("change", function () {
+      var fileName = $("#id_image3")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-3").val(fileName);
+    });
+    $("#id_image4").on("change", function () {
+      var fileName = $("#id_image4")
+        .val()
+        .replace(/C:\\fakepath\\/i, "");
+      $("#upload-name-4").val(fileName);
+    });
+  </script>
+</html>

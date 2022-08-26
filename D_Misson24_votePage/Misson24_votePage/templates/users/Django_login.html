@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mission24</title>
+    <link rel="stylesheet" href="{% static 'users/css/login.css' %}" type="text/css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/" class="nav__home">MISSON24</a>
+      <div class="nav__sub">
+        <a class="nav__sub__about" href="https://mission24.link/" target="_blank">ABOUT</a>
+        {% if user.is_active %}
+        <a class="nav__sub__login" href="/logout">LOGOUT</a>
+        {% else %}
+        <a class="nav__sub__login" href="/">LOGIN</a>
+        {% endif %}
+      </div>
+    </nav>
+    <section>
+      <div class="title-img">
+        <img
+          class="titleImg"
+          src="{% static 'users/img/titleImg.png' %}"
+          alt="Mission24"
+        />
+      </div>
+      <div class="subTitle-img">
+        <img
+          class="subTitleImg"
+          src="{% static 'users/img/subTitle.png' %}"
+          alt="평가 페이지"
+        />
+      </div>
+      {% if user.is_active %}
+      <div class="loginContent">
+        <div class="loginContent-img">
+            {% if user.university == '한국외국어대학교 글로벌'%}
+            <div class="UniversityCard" style="background-image: url('{% static 'users/img/card1.png' %}');">
+            {% elif user.university == '한양대학교 ERICA'%}
+            <div class="UniversityCard" style="background-image: url('{% static 'users/img/card2.png' %}');">
+            {% elif user.university == '을지대학교'%}
+            <div class="UniversityCard" style="background-image: url('{% static 'users/img/card3.png' %}');">
+            {% else %}
+            <div class="UniversityCard" style="background-image: url('{% static 'users/img/card4.png' %}');">
+            {% endif %}
+              <div class="textU1">
+                <p1>{{user.user_id}}</p1>
+              </div>
+              <div class="textU2">
+                <p1>{{user.university}}</p1>
+              </div>
+            </div>
+
+            <div class="InformCard">
+              <div class="textG1">
+                <p1 class ="textGradient">{{user.university}}</p1>
+              </div>
+              <div class="textG2">
+                <p1 class ="textGradient">{{user.user_id}}님 반갑습니다.</p1>
+              </div>
+            </div>
+        </div>
+        <button class="submitButton" onClick="location.href='/main'">이동하기</button>
+      </div>
+      {% else %}
+      <form class="formDiv" method="POST" action=".">
+        {% csrf_token %}
+        <div class="id-Div">
+          <label class="id-label" for="">이름</label>
+          <input
+            type="text"
+            class="form-control idInput"
+            id="id_user_id"
+            name="user_id"
+            maxlength='17'
+          />
+ 
+        </div>
+        <div class="password-Div">
+          <label class="password-label" for=""
+            >비밀번호 (휴대푠 뒷 자리 4자리)</label
+          >
+          <input
+            type="text"
+            class="form-control passwordInput"
+            id="id_password"
+            name="password"
+            maxlength='17'
+          />
+        </div>
+        <button class="submitButton" type="submit">로그인</button>
+      </form>
+      {% endif %}
+      <div><img src="{% static 'users/img/footerImg.png' %}" alt="location" /></div>
+    </section>
+    {% for message in messages %}
+    <script type="text/javascript">
+      alert('로그인한 사용자만 이용할 수 있습니다.');
+    </script>
+    {% endfor %}
+  </body>
+</html>
