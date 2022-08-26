@@ -103,15 +103,21 @@ section {
   border-radius: 10px;
 }
 .content-intro__title {
-  font-size: 25px;
+  font-size: 18px;
   font-weight: 600;
-  margin-top: 50px;
-  margin-bottom: 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .content-intro__content {
   text-align: left;
   width: 80%;
   line-height: 20px;
+  font-size: 13px;
+  display: -webkit-box;
+  margin-bottom: 20px;
+  overflow: hidden;
+  -webkit-line-clamp: 16;
+  -webkit-box-orient: vertical;
 }
 .content-photo-box {
   background-color: #b4b3b3;
