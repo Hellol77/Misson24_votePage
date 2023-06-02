@@ -203,5 +203,6 @@ section {
   }
   .iconHuman {
     margin-right: 30px;
+    visibility: hidden;
   }
 }

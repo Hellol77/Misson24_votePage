@@ -85,6 +85,7 @@ input:focus {
   margin-top: 2rem;
   margin-bottom: 3rem;
   border: none;
+  cursor: pointer;
 }
 
 .loginContent {

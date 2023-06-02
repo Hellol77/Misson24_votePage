@@ -48,6 +48,8 @@ section {
   justify-content: center;
 }
 
+
+
 .title-box {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -55,21 +57,9 @@ section {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  font-size: 35px;
-  font-weight: 500;
+  font-size: 30px;
+  font-weight: 600;
 }
-
-.upword {
-  font-size: 35px;
-  margin-top: 2rem;
-  margin-left: 4rem;
-}
-
-.upword a{
-  color: rgb(255, 255, 255);
-  font-weight: 500;
-}
-
 
 .main-box {
   background-color: #d9d9d9;
@@ -98,6 +88,7 @@ section {
   padding: 10px 16px;
   border-radius: 4px;
   border: none;
+  cursor: pointer;
 }
 .main-box__content-box {
   display: grid;
@@ -113,23 +104,21 @@ section {
   align-items: center;
   flex-direction: column;
   border-radius: 10px;
+  
 }
 .content-intro__title {
-  font-size: 18px;
+  font-size: 25px;
   font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-bottom: 40px;
 }
 .content-intro__content {
   text-align: left;
   width: 80%;
   line-height: 20px;
-  font-size: 13px;
-  display: -webkit-box;
-  margin-bottom: 20px;
+  height: 35vh;
   overflow: hidden;
-  -webkit-line-clamp: 16;
-  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 .content-photo-box {
   background-color: #b4b3b3;
@@ -150,6 +139,7 @@ section {
   border: 2px inset black;
   border: none;
   background-color: #223263;
+  cursor: pointer;
 }
 
 .submit-button {
@@ -165,7 +155,7 @@ section {
 .cancel-button {
   margin-top: 20px;
   color: white;
-  background-color: #CF3E3E;
+  background-color: #9b111e;
   border-radius: 50px;
   width: 400px;
   height: 50px;
@@ -234,6 +224,7 @@ input[type="radio"]:checked {
   }
   .content-intro__content {
     width: 80%;
+    height: auto;
     font-size: 13px;
     display: -webkit-box;
     margin-bottom: 20px;
@@ -252,6 +243,10 @@ input[type="radio"]:checked {
     width: 90%;
   }
   .submit-button {
+    width: 250px;
+    height: 30px;
+  }
+  .cancel-button {
     width: 250px;
     height: 30px;
   }

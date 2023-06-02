@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
-{% load static %}
+  {% load static %}
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +16,7 @@
     <nav class="nav">
       <a href="/" class="nav__home">MISSON24</a>
       <div class="nav__sub">
-        <a class="nav__sub__about">ABOUT</a>
+        <a class="nav__sub__about" href="https://mission24.link/" target="_blank">ABOUT</a>
         {% if user.is_active %}
         <a class="nav__sub__login" href="/logout">LOGOUT</a>
         {% else %}
@@ -29,8 +29,6 @@
         <div style=" cursor: pointer;" onclick="location.href='/assess';">PEER GROUP 평가하기</div>
         <div>{{present}}/{{num}}</div>
       </div>
-
-
       <div class="main-box">
         <div class="main-box__title-box">
           {% if prevID != None  %}
@@ -38,7 +36,7 @@
           {% else %}
           <div><button class="move-button" style="visibility: hidden;">Prev</button></div>
           {% endif %}
-          <div class="main-box__title">팀명</div>
+          <div class="main-box__title">{{assess.team_name}}</div>
           {% if nextID != None  %}
           <div><button class="move-button" onClick="location.href='/assess/{{nextID}}'">Next</button></div>
           {% else %}
@@ -56,34 +54,34 @@
             <img
               class="content-photo"
               id="content-photo-1"
-              src="../../media/{{assess.image1}}"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc1}}"
               alt="img"
             />
             <img
               class="content-photo"
               id="content-photo-2"
-              src="../../media/{{assess.image2}}"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc2}}"
               alt="img"
             />
             <img
               class="content-photo"
               id="content-photo-3"
-              src="../../media/{{assess.image3}}"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc3}}"
               alt="img"
             />
             <img
               class="content-photo"
               id="content-photo-4"
-              src="../../media/{{assess.image4}}"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc4}}"
               alt="img"
             />
             <div class="checks">
               <input
-                type="radio"
-                name="photo"
-                class="radio-button"
-                id="1"
-                checked
+              type="radio"
+              name="photo"
+              class="radio-button"
+              id="1"
+              checked
               />
               <label for=""></label>
               <input type="radio" name="photo" class="radio-button" id="2" />
@@ -97,13 +95,13 @@
         </div>
       </div>
       <form method="POST" action=".">
-      {% csrf_token %}
-      {% if value == 0 %}
-        <button class="submit-button" type="submit">투표하기</button>
-      {% else %}
-        <button class="cancel-button" type="submit">취소하기</button>
-      {% endif %}
-      </form>
+        {% csrf_token %}
+        {% if value == 0 %}
+          <button class="submit-button" type="submit">투표하기</button>
+        {% else %}
+          <button class="cancel-button" type="submit">취소하기</button>
+        {% endif %}
+        </form>
     </section>
   </body>
   <script src="https://code.jquery.com/jquery-latest.min.js"></script>
