@@ -1,0 +1,26 @@
+<html>
+    <head>
+        {% load static %}
+    </head>
+    <body>
+        각 팀들에 대한 id number <br>
+        {% for l in listall %}
+        {{l.id}} {{l.team_name}} <br>
+        {% endfor %}
+        <br>
+        <br>
+        총 투표 수 : {{num}} <br>
+        이웃사람 : {{p33}} <br>
+        지금출발해 : {{p35}} <br>
+        해피플(Happyple) : {{p36}} <br>
+        QRator : {{p28}} <br>
+        푸푸타임 : {{p26}} <br>
+        오운완(새콤달콤맛있당) : {{p20}} <br>
+        그때 우리는... : {{p29}} <br>
+        야간주행 : {{p25}} <br>
+        SPOT LIGHT : {{p23}} <br>
+        잘챙기짐! : {{p34}} <br>
+        Pick Search : {{p27}} <br>
+        오늘 보는 거 맞지? : {{p31}} <br>
+    </body>
+</html>

@@ -1,11 +1,15 @@
-from django.shortcuts import render, redirect, get_object_or_404
+import json
+
 from .forms import LoginForm, PostForm
 from .models import PostResult, PersonalVote
-from django.contrib.auth import login, logout, authenticate
-from django.views.generic import FormView
+
 from django.contrib import messages
-import json
+from django.contrib.auth import login, logout, authenticate
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import FormView
+
 from users.decorators import *
+
 
 class LoginView(FormView):
     template_name = 'users/Django_login.html'
@@ -23,13 +27,16 @@ class LoginView(FormView):
 
         return super().form_valid(form)
 
+
 @login_message_required
 def main_view(request):
     return render(request, 'users/Django_main.html')
 
+
 def logout_view(request):
     logout(request)
     return redirect('/')
+
 
 @login_message_required
 def PostUpload(request):
@@ -74,22 +81,20 @@ def PostUpload(request):
     else:
         if PostResult.objects.filter(user_id=request.user).exists():
             exContext = PostResult.objects.filter(user_id=request.user)[0]
-#            postuploadForm = PostForm(initial={"team_name":exContext.team_name, "team_members":exContext.team_members, "intro_text":exContext.intro_text})
 
             context = {
                 "team_name":exContext.team_name,
                 "team_members":exContext.team_members,
                 "intro_text":exContext.intro_text,
                 "num": 1
-            #'postuploadForm': postuploadForm,
             }
         else:
             context = {
                 "num": 0
             }
 
-
         return render(request, 'users/register.html', context)
+    
 
 @login_message_required
 def peerGroup_view(request):
@@ -112,6 +117,7 @@ def peerGroup_view(request):
         'num': len(listall),
     }
     return render(request, 'users/assess.html', context)
+
 
 @login_message_required
 def assessDetail_view(request, pk):
@@ -138,17 +144,13 @@ def assessDetail_view(request, pk):
                 del PersonalVoteDict[i]
 
         if PersonalVoteDict[str(assess.id)] == 1:
-#            PersonalVote.objects.filter(user_id=request.user)[0].delete()
+
             modifyVote = PersonalVote.objects.get(id=get_object_or_404(PersonalVote, user_id=request.user).id)
             PersonalVoteDict[str(assess.id)] = 0
             modifyVote.user_id = request.user
             modifyVote.dict_json = json.dumps(PersonalVoteDict)
             modifyVote.save()
-#            voteupload = PersonalVote(
-#                user_id = request.user,
-#                dict_json = json.dumps(PersonalVoteDict)
-#            )
-#            voteupload.save()
+
             return redirect('.')
 
         else:
@@ -158,7 +160,6 @@ def assessDetail_view(request, pk):
             else:
                 PersonalVoteDict[str(assess.id)] = 1
                 if PersonalVote.objects.filter(user_id=request.user).exists():
-#                   PersonalVote.objects.filter(user_id=request.user)[0].delete()
                     modifyVote = PersonalVote.objects.get(id=get_object_or_404(PersonalVote, user_id=request.user).id)
                     modifyVote.user_id = request.user
                     modifyVote.dict_json = json.dumps(PersonalVoteDict)

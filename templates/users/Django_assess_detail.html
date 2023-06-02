@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'users/css/Django_assess_detail.css' %}"
+      type="text/css"
+    />
+    <title>Mission24</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/" class="nav__home">MISSON24</a>
+      <div class="nav__sub">
+        <a class="nav__sub__about" href="https://mission24.link/" target="_blank">ABOUT</a>
+        {% if user.is_active %}
+        <a class="nav__sub__login" href="/logout">LOGOUT</a>
+        {% else %}
+        <a class="nav__sub__login" href="/">LOGIN</a>
+        {% endif %}
+      </div>
+    </nav>
+    <section class="section-box">
+      <div class="title-box">
+        <div style=" cursor: pointer;" onclick="location.href='/assess';">PEER GROUP 평가하기</div>
+        <div>{{present}}/{{num}}</div>
+      </div>
+      <div class="main-box">
+        <div class="main-box__title-box">
+          {% if prevID != None  %}
+          <div><button class="move-button" onClick="location.href='/assess/{{prevID}}'">Prev</button></div>
+          {% else %}
+          <div><button class="move-button" style="visibility: hidden;">Prev</button></div>
+          {% endif %}
+          <div class="main-box__title">{{assess.team_name}}</div>
+          {% if nextID != None  %}
+          <div><button class="move-button" onClick="location.href='/assess/{{nextID}}'">Next</button></div>
+          {% else %}
+          <div><button class="move-button" style="visibility: hidden;">Next</button></div>
+          {% endif %}
+        </div>
+        <div class="main-box__content-box">
+          <div class="content-intro-box">
+            <div class="content-intro__title">소개</div>
+            <div class="content-intro__content">
+              {{assess.intro_text}}
+            </div>
+          </div>
+          <div class="content-photo-box">
+            {% if assess.imagesrc1 == None %}
+            <img
+              class="content-photo"
+              id="content-photo-1"
+              src="{% static 'users/img/noimage.png' %}"
+              alt="img"
+            />
+            {% else %}
+            <img
+              class="content-photo"
+              id="content-photo-1"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc1}}"
+              alt="img"
+            />
+            {% endif %}
+
+            {% if assess.imagesrc2 == None %}
+            <img
+              class="content-photo"
+              id="content-photo-2"
+              src="{% static 'users/img/noimage.png' %}"
+              alt="img"
+            />
+            {% else %}
+            <img
+              class="content-photo"
+              id="content-photo-2"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc2}}"
+              alt="img"
+            />
+            {% endif %}
+
+            {% if assess.imagesrc3 == None %}
+            <img
+              class="content-photo"
+              id="content-photo-3"
+              src="{% static 'users/img/noimage.png' %}"
+              alt="img"
+            />
+            {% else %}
+            <img
+              class="content-photo"
+              id="content-photo-3"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc3}}"
+              alt="img"
+            />
+            {% endif %}
+
+            {% if assess.imagesrc4 == None %}
+            <img
+              class="content-photo"
+              id="content-photo-4"
+              src="{% static 'users/img/noimage.png' %}"
+              alt="img"
+            />
+            {% else %}
+            <img
+              class="content-photo"
+              id="content-photo-4"
+              src="https://mission24.s3.ap-northeast-2.amazonaws.com/{{assess.imagesrc4}}"
+              alt="img"
+            />
+            {% endif %}
+
+            <div class="checks">
+              <input
+              type="radio"
+              name="photo"
+              class="radio-button"
+              id="1"
+              checked
+              />
+              <label for=""></label>
+              <input type="radio" name="photo" class="radio-button" id="2" />
+              <label for=""></label>
+              <input type="radio" name="photo" class="radio-button" id="3" />
+              <label for=""></label>
+              <input type="radio" name="photo" class="radio-button" id="4" />
+              <label for=""></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form method="POST" action=".">
+        {% csrf_token %}
+        {% if value == 0 %}
+          <button class="submit-button" type="submit" disabled>투표 기간이 종료되었습니다.</button>
+        {% else %}
+          <button class="cancel-button" type="submit" disabled>투표 기간이 종료되었습니다.</button>
+        {% endif %}
+        </form>
+    </section>
+  </body>
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $("#1").click(function () {
+      $("#content-photo-1").css("display", "block");
+      $("#content-photo-2").css("display", "none");
+      $("#content-photo-3").css("display", "none");
+      $("#content-photo-4").css("display", "none");
+    });
+    $("#2").click(function () {
+      $("#content-photo-1").css("display", "none");
+      $("#content-photo-2").css("display", "block");
+      $("#content-photo-3").css("display", "none");
+      $("#content-photo-4").css("display", "none");
+    });
+    $("#3").click(function () {
+      $("#content-photo-1").css("display", "none");
+      $("#content-photo-2").css("display", "none");
+      $("#content-photo-3").css("display", "block");
+      $("#content-photo-4").css("display", "none");
+    });
+    $("#4").click(function () {
+      $("#content-photo-1").css("display", "none");
+      $("#content-photo-2").css("display", "none");
+      $("#content-photo-3").css("display", "none");
+      $("#content-photo-4").css("display", "block");
+    });
+  </script>
+  <script>
+    window.addEventListener( "pageshow", function ( event ) {
+      var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+      if ( historyTraversal ) {
+        // Handle page restore.
+        window.location.href = '/assess';
+      }
+    });
+  </script>
+</html>

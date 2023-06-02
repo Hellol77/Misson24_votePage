@@ -1,0 +1,1 @@
+web: gunicorn Mission24_votePage.wsgi

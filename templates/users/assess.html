@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+{% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'users/css/assess.css' %}" type="text/css" />
+    <title>Mission24</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <a href="/" class="nav__home">MISSON24</a>
+      <div class="nav__sub">
+        <a class="nav__sub__about" href="https://mission24.link/" target="_blank">ABOUT</a>
+        <a href="/logout" class="nav__sub__login">LOGOUT</a>
+      </div>
+    </nav>
+
+    <div class="upword">
+      <a href="/assess">PEER GROUP 평가하기</a> 
+    </div>
+    <div class="middleword">
+        투표는 최대 5팀까지 가능합니다. <br>
+        내가 투표한 팀은 빨간색으로 표시됩니다. <br>
+        클릭시 상세 페이지로 이동합니다.
+    </div>
+
+    <section>
+        <div class="button-Div">
+        {% for list in listall %}
+            <a class="button-a">
+                {% if list.value == 1%}
+                <div style ="background-color: #F5716B;"class="button-Div__button clicked" onclick="location.href='./{{list.pk}}';">
+                  <a class="forloopCount" style="color:white">{{forloop.counter}} / {{num}}</a>
+                  <a class="teamName" style="color:white">{{list.team_name}}</a>
+                  <p class="arrow_box_new" style="color: #F5716B;">{{list.team_members}}</p>
+                  <img
+                    class="iconHuman2"
+                    src="{% static 'users/img/iconHuman.png' %}"
+                    alt="사람 아이콘"
+                    />
+                  {% else%}
+                <div class="button-Div__button" onclick="location.href='./{{list.pk}}';">
+                  <a class="forloopCount">{{forloop.counter}} / {{num}}</a>
+                  <a class="teamName">{{list.team_name}}</a> 
+                  <p class="arrow_box">{{list.team_members}}</p>
+                  <img
+                    class="iconHuman"
+                    src="{% static 'users/img/iconHuman.png' %}"
+                    alt="사람 아이콘"
+                    />
+                {% endif %}  
+                </div>   
+            </a>
+        {% endfor %}
+        </div>
+
+    </section>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      window.addEventListener( "pageshow", function ( event ) {
+        var historyTraversal = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+        if ( historyTraversal ) {
+          // Handle page restore.
+          window.location.reload();
+        }
+      });
+
+     $('.iconHuman').mouseover(function(){
+     
+     $this = $(this);
+     $this.prev().css("color","#808080");
+     })
+     $('.iconHuman').mouseout(function(){
+     
+     $this = $(this);
+     $this.prev().css("color","#d9d9d9");
+     })
+
+     $('.iconHuman2').mouseover(function(){
+     
+     $this = $(this);
+     $this.prev().css("color","white");
+     })
+     $('.iconHuman2').mouseout(function(){
+     
+     $this = $(this);
+     $this.prev().css("color","#F5716B");
+     })
+    </script>
+
+    {% for message in messages %}
+      <script type="text/javascript">
+        alert('최대 5개까지 투표 가능합니다.');
+      </script>
+    {% endfor %}
+  </body>
+</html>
